@@ -25,6 +25,7 @@ public class UserPrefs {
     private String[] tables;
     private String pkg;
     private String dir;
+    private String dbschema;
     private int numThreads = 2;
 
     public boolean isAllTables() {
@@ -55,6 +56,13 @@ public class UserPrefs {
         this.dir = dir;
     }
 
+    public String getDbSchema() {
+        return dbschema;
+    }
+    public void setDbSchema(String dbschema) {
+        this.dbschema = dbschema;
+    }
+    
     public int getNumThreads() {
         return numThreads;
     }

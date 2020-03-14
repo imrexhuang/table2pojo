@@ -91,6 +91,7 @@ public class Table2Pojo {
         try {
             Options options = new Options();
             options.addOption("a", "all", false, "generate POJOs for all the tables in database");
+            options.addOption("s", "schemna", true, "generate POJOs for all the tables in database (specifying schema name)");
             options.addOption("t", "tables", true, "list of database tables delimited by , (comma). overrides `a` option");
             options.addOption("p", "pkg", true, "(optional) java package name of the POJOs. If not specified, default/blank package will be used");
             options.addOption("d", "dir", true, "(optional) target directory where POJOs (.Java files) are generated. If not specified, current directory will be used");
@@ -110,6 +111,10 @@ public class Table2Pojo {
             if (line.hasOption("a")) {
                 prefs.setAllTables(true);
                 info("tables=all");
+            } else if (line.hasOption("s")) {
+            	prefs.setAllTables(true);
+                prefs.setDbSchema(line.getOptionValue("s"));
+                info("tables=all, schema=" + prefs.getDbSchema());
             } else if (line.hasOption("t")) {
                 prefs.setAllTables(false);
                 String[] tables = line.getOptionValue("t").split(",");

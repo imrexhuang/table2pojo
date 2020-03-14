@@ -55,9 +55,13 @@ public class TableReader extends Thread {
         if (prefs == null || conn == null || queue == null) {
             throw new IllegalArgumentException("null values");
         }
-
+        
         if (prefs.isAllTables()) {
-            loadTablesDb();
+        	if (prefs.getDbSchema().trim().equals("")) {
+                loadTablesDb();        		
+        	}else {
+        		loadTablesDb(prefs.getDbSchema().trim());
+        	}
         } else {
             loadTablesPrefs();
         }
@@ -80,6 +84,22 @@ public class TableReader extends Thread {
             addDoneObjects();
         }
     }
+    
+    /**
+     * load all tables from dtabase (specifying schema name)
+     */
+    protected void loadTablesDb(String dbSchema) {
+        info("reading all tables from database, schema is "+dbSchema+"...");
+        try (ResultSet rs = conn.getMetaData().getTables(null, dbSchema, "%", new String[] {"TABLE"});){
+            while (rs.next()) {
+                queue.offer(rs.getString(3));
+            }
+        } catch (SQLException sqle) {
+            error(sqle.getMessage());
+        } finally {
+            addDoneObjects();
+        }
+    }    
 
     /**
      * load tables from user preferences
