@@ -76,7 +76,7 @@ public class PojoWriter extends Thread {
         MAP_IMPORTS.put("Timestamp", "java.sql.Timestamp");
     }
 
-    private static final String NEW_LINE = "\n";
+    private static final String NEW_LINE = System.lineSeparator();
 
     private final UserPrefs prefs;
     private final Connection conn;
