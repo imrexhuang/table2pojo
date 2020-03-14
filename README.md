@@ -1,3 +1,7 @@
+# Environment
+
+Java 8
+
 # Table2Pojo
 
 Simple tool to generate POJO classes from database tables/columns. ###
@@ -6,6 +10,7 @@ Supports all JDBC supported databases. Includes following JDBC drivers:
 - Oracle 
 - MySQL 
 - PostgreSQL 
+- SQL Server
 
 JDBC drivers can be added/updated in `build.gradle` file. 
 
@@ -21,10 +26,10 @@ gradle fatJar
 Configure the database connection properties in `db.properties` file in current directory: 
 
 ```
-driver=oracle.jdbc.OracleDriver
-url=jdbc:oracle:thin:@localhost:1521:orcl
-username=dbusername
-password=dbpassword
+driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
+url=jdbc:sqlserver://127.0.0.1:1433;databaseName=AdventureWorks
+username=username
+password=password
 ```
 
 Run the jar with arguments. 
