@@ -43,6 +43,7 @@ Option | Description
 -------|------------
 h | help 
 a | generate POJOs for all the tables in database  
+s | generate POJOs for all the tables in database (specifying schema name)
 t | list of database tables delimited by ; (semicolon). overrides `a` option 
 p | (optional) java package name of the POJOs. If not specified, default/blank package will be used. 
 d | (optional) target directory where POJOs (.Java files) are generated. If not specified, current directory will be used 
