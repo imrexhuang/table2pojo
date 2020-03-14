@@ -57,10 +57,10 @@ public class TableReader extends Thread {
         }
         
         if (prefs.isAllTables()) {
-        	if (prefs.getDbSchema().trim().equals("")) {
-                loadTablesDb();        		
+        	if (!prefs.getDbSchema().trim().equals("")) {
+        		loadTablesDb(prefs.getDbSchema().trim());                    		
         	}else {
-        		loadTablesDb(prefs.getDbSchema().trim());
+        		loadTablesDb();  
         	}
         } else {
             loadTablesPrefs();
